@@ -67,6 +67,15 @@ let quizFinished = false;
 
 function startQuiz() {
   currentQuestionIndex = 0;
+
+  /* BUG 3 FIX.
+     `let score = 0` up at the top only runs ONCE, when the page loads.
+     Restart called this function, which reset the question index but
+     left score untouched, so the old points carried into the new game.
+     startQuiz() is the single entry point for both the first run and
+     Restart, so resetting everything here fixes it in one place. */
+  score = 0;
+
   quizFinished = false;
   nextButton.innerHTML = "Next";
   showQuestion();
