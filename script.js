@@ -1,9 +1,10 @@
 /* ------------------------------------------------------------------
-   STARTING POINT - this file has all three bugs in it.
+   All three bugs fixed. Each fix is marked with a BUG n FIX comment
+   below, and each one is its own commit - see the git history, or
+   README.md, to read them one at a time.
 
-   This is written the way the usual YouTube quiz tutorial writes it,
-   so the mistakes here are the same ones that are almost certainly in
-   your file. Each fix is a separate commit after this one.
+   The first commit in this repo is the same file with all three bugs
+   still in it, written the way the usual quiz tutorial writes it.
 ------------------------------------------------------------------ */
 
 const questions = [
