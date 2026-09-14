@@ -64,6 +64,7 @@ const progressFillElement  = document.getElementById("progress-fill");
 let currentQuestionIndex = 0;
 let score = 0;
 let quizFinished = false;
+let answered = false;   // has the question on screen already been answered?
 
 function startQuiz() {
   currentQuestionIndex = 0;
@@ -104,6 +105,7 @@ function showQuestion() {
 }
 
 function resetState() {
+  answered = false;
   nextButton.style.display = "none";
 
   while (answerButtonsElement.firstChild) {
@@ -112,6 +114,11 @@ function resetState() {
 }
 
 function selectAnswer(e) {
+  /* Extra guard: a fast double-click used to run this handler twice
+     and score the same question twice over. */
+  if (answered) return;
+  answered = true;
+
   const selectedBtn = e.target;
 
   /* BUG 1 FIX.
