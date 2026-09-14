@@ -104,7 +104,15 @@ function resetState() {
 
 function selectAnswer(e) {
   const selectedBtn = e.target;
-  const isCorrect = selectedBtn.dataset.correct;
+
+  /* BUG 1 FIX.
+     selectedBtn.dataset.correct is a STRING, not a boolean - a data
+     attribute can only ever hold text. A wrong answer therefore carries
+     the string "false", and in JavaScript every non-empty string is
+     truthy, so the old `if (isCorrect)` was true for every single answer
+     and the score went up no matter what you clicked.
+     Comparing against the string "true" is what makes it a real test. */
+  const isCorrect = selectedBtn.dataset.correct === "true";
 
   if (isCorrect) {
     selectedBtn.classList.add("correct");
