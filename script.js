@@ -129,7 +129,14 @@ function selectAnswer(e) {
   });
 
   scoreTextElement.innerHTML = "Score: " + score;
-  currentQuestionIndex++;
+
+  /* BUG 2 FIX.
+     `currentQuestionIndex++` used to sit here as well as in
+     handleNextButton(), so answering a question and then pressing Next
+     moved the index on by TWO: question 2 was never shown and the
+     counter jumped 1 -> 3 -> 5.
+     handleNextButton() is now the only place in the file that changes
+     currentQuestionIndex. */
 
   nextButton.style.display = "block";
 }
